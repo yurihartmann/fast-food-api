@@ -1,23 +1,30 @@
-import uuid
-
 from sqlmodel import SQLModel, Field, Relationship
-from app.models.food_category import FoodCategory
+from fastapi_core.model import ModelMixin
+
+from app.models.order_foods import OrderFood
+from app.utils import factory_uuid4
 
 
 class FoodBase(SQLModel):
-    name: str
-    description: str
-    calories: float
-    price: float
-
-    category: str = Field(foreign_key="food_category.key")
+    name: str = Field(index=True, schema_extra={'example': 'Cheddar Burger'})
+    description: str = Field(schema_extra={'example': 'Bread, Cheddar and Burger'})
+    calories: float = Field(schema_extra={'example': 350})
+    price: float = Field(index=True, schema_extra={'example': 9.90})
 
 
 class FoodBaseWithUUID(FoodBase):
-    id: str = Field(primary_key=True, default_factory=uuid.uuid4)
+    id: str = Field(primary_key=True, default_factory=factory_uuid4)
 
 
-class Food(FoodBaseWithUUID):
+class Food(ModelMixin, FoodBaseWithUUID, table=True):
     __tablename__ = "food"
 
-    category: FoodCategory | None = Relationship(back_populates="heroes")
+    orders_foods: list['OrderFood'] = Relationship(back_populates='food')
+
+
+class CreateFoodSchema(FoodBase):
+    pass
+
+
+class UpdateFoodSchema(FoodBase):
+    pass

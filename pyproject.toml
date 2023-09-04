@@ -8,7 +8,7 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.11"
-fastapi-core = { path = "/Users/yurihartmann/PycharmProjects/fastapi-core/dist/fastapi_core-0.0.1.tar.gz", extras=["database"]}
+fastapi-core = { path = "/Users/yurihartmann/PycharmProjects/fastapi-core/dist/fastapi_core-0.0.1.tar.gz", extras=["database", "redis"]}
 sqlmodel = "^0.0.8"
 dependency-injector = "^4.41.0"
 uvicorn = "^0.23.2"
