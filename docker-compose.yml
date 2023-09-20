@@ -1,6 +1,7 @@
 services:
   postgres:
     image: postgres
+    restart: always
     environment:
       POSTGRES_PASSWORD: "pg_password"
     ports:
@@ -10,6 +11,7 @@ services:
 
   pgadmin:
     image: dpage/pgadmin4
+    restart: always
     environment:
       PGADMIN_DEFAULT_EMAIL: "admin@admin.com"
       PGADMIN_DEFAULT_PASSWORD: "pg_password"
