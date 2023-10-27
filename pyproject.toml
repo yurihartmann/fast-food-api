@@ -8,7 +8,7 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.11"
-fastapi-core = { version = "1.0.1", extras=["database", "redis"]}
+fastapi-core = { version = "1.0.2", extras=["database", "redis"]}
 sqlmodel = "^0.0.8"
 dependency-injector = "^4.41.0"
 uvicorn = "^0.23.2"
